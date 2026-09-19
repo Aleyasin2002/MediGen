@@ -33,7 +33,7 @@
 ## 🚀 Usage
 
 ### آنلاین (سریعترین راه)
-باز کن: **https://YOUR-USERNAME.github.io/MediGen/**
+باز کن: **https://aleyasin2002.github.io/MediGen/**
 
 ### نصب بهعنوان اپ (PWA)
 - **Android / Desktop (Chrome/Edge):** دکمه «Install» در نوار آدرس ظاهر میشه → بزن.
