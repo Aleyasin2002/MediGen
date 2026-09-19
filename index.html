@@ -2382,11 +2382,27 @@ document.addEventListener('click', e=>{
     else if(act === 'save-as') saveAsNewFile();
     return;
   }
-  const recent = e.target.closest('[data-recent]');
-  if(recent){ closeAllDropdowns(); const id = recent.dataset.recent; (async ()=>{ const records = await getAllHandles(); const rec = records.find(r => r.id === id); if(rec && rec.handle) await openFileFromHandle(rec.handle); })(); return; }
   const rd = e.target.closest('[data-recent-del]');
-  if(rd){ e.stopPropagation(); (async ()=>{ await removeHandleFromDB(rd.dataset.recentDel); refreshRecentFiles(); })(); return; }
-
+if(rd){
+  e.preventDefault(); e.stopPropagation();
+  const delId = rd.dataset.recentDel;
+  (async ()=>{
+    await removeHandleFromDB(delId);
+    await refreshRecentFiles();
+  })();
+  return;
+}
+const recent = e.target.closest('[data-recent]');
+if(recent){
+  closeAllDropdowns();
+  const id = recent.dataset.recent;
+  (async ()=>{
+    const records = await getAllHandles();
+    const rec = records.find(r => r.id === id);
+    if(rec && rec.handle) await openFileFromHandle(rec.handle);
+  })();
+  return;
+}
   const ai = e.target.closest('[data-ai]');
   if(ai){
     const act = ai.dataset.ai;
